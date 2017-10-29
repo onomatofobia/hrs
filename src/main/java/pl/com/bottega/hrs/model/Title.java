@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Table(name = "titles")
 public class Title {
 
+    @Transient
     private TimeProvider timeProvider;
 
     public LocalDate getFromDate() {
@@ -22,7 +23,10 @@ public class Title {
     private static class TitleId implements Serializable{
         @Column(name = "emp_no")
         private Integer empNo;
+
         private String title;
+
+        @Transient
         private TimeProvider timeProvider;
         @Column(name = "from_date")
         private LocalDate fromDate;
@@ -54,7 +58,7 @@ public class Title {
     public Title(Integer empNo, String title, TimeProvider timeProvider) {
         this.timeProvider = timeProvider;
         this.id = new TitleId(empNo, title, timeProvider);
-        this.toDate = Constants.MAX_DATE;
+        this.toDate = TimeProvider.MAX_DATE;
     }
 
 

@@ -2,7 +2,6 @@ package pl.com.bottega.hrs.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Time;
 import java.time.LocalDate;
 
 @Entity
@@ -49,7 +48,7 @@ public class Salary {
         id = new SalaryId(empNo, timeProvider);
         this.salary = salary;
         this.timeProvider = timeProvider;
-        toDate = Constants.MAX_DATE;
+        toDate = TimeProvider.MAX_DATE;
     }
 
     public LocalDate getFromDate(){

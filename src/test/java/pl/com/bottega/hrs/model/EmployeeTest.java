@@ -80,7 +80,7 @@ public class EmployeeTest {
         );
 
         assertEquals(
-                Arrays.asList(t1, t2, Constants.MAX_DATE),
+                Arrays.asList(t1, t2, TimeProvider.MAX_DATE),
                 history.stream().map((s) -> s.getToDate()).collect(Collectors.toList())
         );
     }
@@ -148,7 +148,7 @@ public class EmployeeTest {
         Collection<DepartmentAssignment> history = sut.getDepartmentsHistory();
         assertEquals(Arrays.asList(t0, t1),
                 history.stream().map(DepartmentAssignment::getFromDate).collect(Collectors.toList()));
-        assertEquals(Arrays.asList(Constants.MAX_DATE, t2),
+        assertEquals(Arrays.asList(TimeProvider.MAX_DATE, t2),
                 history.stream().map(DepartmentAssignment::getToDate).collect(Collectors.toList()));
     }
 }

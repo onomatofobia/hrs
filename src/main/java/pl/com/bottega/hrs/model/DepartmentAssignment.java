@@ -3,19 +3,18 @@ package pl.com.bottega.hrs.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Optional;
 
 @Entity
 @Table(name = "dept_emp")
 public class DepartmentAssignment {
 
+    @Transient
     private TimeProvider timeProvider;
 
     public DepartmentAssignment(Integer empNo, Department department, TimeProvider timeProvider) {
         id = new DepartmentAssignmentId(empNo, department);
         this.timeProvider = timeProvider;
-        toDate = Constants.MAX_DATE;
+        toDate = TimeProvider.MAX_DATE;
         fromDate = timeProvider.today();
     }
 
@@ -54,11 +53,11 @@ public class DepartmentAssignment {
     }
 
     @EmbeddedId
-    private DepartmentAssignmentId id;
+    public DepartmentAssignmentId id;
     @Column(name = "from_date")
-    private LocalDate fromDate;
+    public LocalDate fromDate;
     @Column(name = "to_date")
-    private LocalDate toDate;
+    public LocalDate toDate;
 
 
     DepartmentAssignment() {
@@ -74,19 +73,8 @@ public class DepartmentAssignment {
         return toDate;
     }
 
-    public void setToDate(LocalDate toDate) {
-        this.toDate = toDate;
-    }
-
-    public Department getDept() {
-        return id.department;
-    }
-
     public LocalDate getFromDate() {
         return fromDate;
     }
-
-    public void setDept(Department newDept){
-        id.department = newDept;
-    }
 }
+

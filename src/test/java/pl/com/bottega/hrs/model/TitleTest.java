@@ -2,7 +2,6 @@ package pl.com.bottega.hrs.model;
 
 
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import static org.junit.Assert.*;
-import static pl.com.bottega.hrs.model.EmployeeTest.SALARY;
 
 public class TitleTest {
 
@@ -48,7 +46,7 @@ public class TitleTest {
     }
 
     @Test
-    public void shouldAllowMultipleChangesOfSalary(){
+    public void shouldAllowMultipleChangesOfTitle(){
         //when
         sut.changeTitle(TITLE);
         sut.changeTitle(ANOTHER_TITLE);
@@ -82,7 +80,7 @@ public class TitleTest {
         );
 
         assertEquals(
-                Arrays.asList(t1, t2, Constants.MAX_DATE),
+                Arrays.asList(t1, t2, TimeProvider.MAX_DATE),
                 history.stream().map((s) -> s.getToDate()).collect(Collectors.toList())
         );
     }

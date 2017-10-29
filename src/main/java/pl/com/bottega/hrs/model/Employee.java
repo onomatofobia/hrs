@@ -29,7 +29,6 @@ public class Employee {
 
     @Column(name = "last_name")
     private String lastName;
-    private Title title;
 
     @Enumerated(value = EnumType.STRING)
     @Column(columnDefinition = "enum('M', 'F')")
@@ -51,7 +50,6 @@ public class Employee {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "emp_no")
-    private Collection<DepartmentAssignment> deptAssignments = new LinkedList<>();
     private Collection<DepartmentAssignment> departmentAssigments = new LinkedList<>();
 
     public Employee() {
@@ -74,25 +72,11 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     public Address getAddress() {
         return address;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
 
     public Collection<Salary> getSalaries() {
         return salaries;
@@ -102,13 +86,6 @@ public class Employee {
         return titles;
     }
 
-    public Collection<DepartmentAssignment> getDeptAssignments() {
-        return deptAssignments;
-    }
-
-    public Integer getEmpNo() {
-        return empNo;
-    }
 
     public void changeSalary(Integer newSalary) {
         Optional<Salary> optionalSalary = getCurrentSalary();
