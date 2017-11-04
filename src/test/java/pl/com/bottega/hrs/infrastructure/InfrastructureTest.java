@@ -20,6 +20,9 @@ public class InfrastructureTest {
     @After
     public void cleanUp() {
         executeInTransaction((em) -> {
+            em.createNativeQuery("DELETE FROM salaries").executeUpdate();
+            em.createNativeQuery("DELETE FROM dept_emp").executeUpdate();
+            em.createNativeQuery("DELETE FROM departments").executeUpdate();
             em.createNativeQuery("DELETE FROM employees").executeUpdate();
         });
     }

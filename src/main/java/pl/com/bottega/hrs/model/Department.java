@@ -46,4 +46,8 @@ public class Department {
     public String getDepName() {
         return depName;
     }
+
+    public String getNumber() {
+        return depNo;
+    }
 }
